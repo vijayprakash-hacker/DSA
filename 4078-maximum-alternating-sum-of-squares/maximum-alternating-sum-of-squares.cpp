@@ -1,12 +1,18 @@
 class Solution {
 public:
+    static bool cmp(const int& a, const int& b) {
+        return (abs(a) < abs(b));
+    }
+
     long long maxAlternatingSum(vector<int>& nums) {
         int n = nums.size();
-        for(int i = 0;i < n; i++) nums[i] = abs(nums[i]);
-        sort(nums.begin(), nums.end());
+
+        sort(nums.begin(), nums.end(), cmp);
         long long ans = 0;
+
         for(int i = n / 2; i < n; i++) ans += nums[i] * nums[i];
         for(int i = 0; i < n / 2; i++) ans -= nums[i] * nums[i];
+        
         return ans;    
     }
 };
